@@ -1,8 +1,12 @@
 from tkinter import *
 import random
+# from tkinter import
 
 
 # 生成一个随机的定长字符串
+from tkinter import filedialog, dialog
+
+
 def Nstr(lenx):
     randomstr=""
     for item in range(0,lenx):
@@ -92,14 +96,23 @@ def savelocaol():
     # for item in Uset:
     #     TELnum = head + item + tail
     #     LastSet.add(TELnum)
-
-
     #######################
-    filepath=saveinput.get()
-    fo = open(filepath, "w")
-    fo.write(showTel.get('0.0','end'))
-    print(showTel.get('0.0','end'))
-    print(type(showTel.get('0.0','end')))
+
+    # 第二次更改需要直接路径
+    # filepath=saveinput.get()
+    # fo = open(filepath, "w")
+    # fo.write(showTel.get('0.0','end'))
+    ####################################
+    file_path=filedialog.asksaveasfilename(title="保存文件")
+    file_text=showTel.get('0.0','end')
+    if file_path is not None:
+        with open(file=file_path,mode='a+',encoding='utf-8') as file:
+            file.write(file_text)
+        # 保存之后就清空
+        # showTel.delete(1.0,"end")
+        dialog.Dialog(None, {'title': 'File Modified', 'text': '保存完成', 'bitmap': 'warning', 'default': 0,
+                             'strings': ('OK', 'Cancle')})
+        print("保存完成")
 btn=Button(f5,text="保存",command=savelocaol)
 btn.pack(side=RIGHT)
 
