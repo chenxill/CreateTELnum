@@ -1,22 +1,5 @@
 from tkinter import *
 import random
-import sys
-
-'''
-输出重定向函数
-把文件的对象的引用赋给 sys.stdout，
-那么 print 调用的就是文件对象的 write 方法
-sys.stdout=TextRedirector(showTel,"stdout")————见下
-'''
-class TextRedirector(object):
-    def __init__(self, widget, tag="stdout"):
-        self.widget = widget
-        self.tag = tag
-
-    def write(self, str):
-        self.widget.configure(state="normal")
-        self.widget.insert("end", str, (self.tag,))
-        self.widget.configure(state="disabled")
 
 
 # 生成一个随机的定长字符串
@@ -127,12 +110,5 @@ btnclear.pack()
 f5.pack()
 f6.pack(pady=5)
 
-
-
-'''
-对输出信息的重定向
-把文件的对象的引用赋给 sys.stdout，
-那么 print 调用的就是文件对象的 write 方法
-'''
 
 top.mainloop()
